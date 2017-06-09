@@ -2,11 +2,14 @@ package com.movie.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="release_movie")
 public class ReleaseMovie {
+	private int id;
 	private String city;
 	private String movieName;
 	private String director;
@@ -16,6 +19,16 @@ public class ReleaseMovie {
 	private String releaseTime;
 	private String score;
 	private String star;
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	@Column(name="city")
 	public String getCity() {
