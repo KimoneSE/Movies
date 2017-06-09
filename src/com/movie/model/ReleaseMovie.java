@@ -4,12 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
+
+import com.movie.model.pk.ReleaseMoviePK;
 
 @Entity
 @Table(name="release_movie")
+@IdClass(ReleaseMoviePK.class)
 public class ReleaseMovie {
-	private int id;
+
 	private String city;
 	private String movieName;
 	private String director;
@@ -21,15 +25,6 @@ public class ReleaseMovie {
 	private String star;
 	
 	@Id
-	@Column(name="id")
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	@Column(name="city")
 	public String getCity() {
 		return city;
@@ -38,6 +33,7 @@ public class ReleaseMovie {
 		this.city = city;
 	}
 	
+	@Id
 	@Column(name="movieName")
 	public String getMovieName() {
 		return movieName;

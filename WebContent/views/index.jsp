@@ -9,7 +9,7 @@
 </head>
 
 <body style="margin-top:10px">
-	<div id="myContent" style="min-height: 40px;width:85%;margin-left:10%;margin-top:30px;">
+	<div id="myContent" style="min-height: 40px;width:80%;margin-left:10%;margin-top:30px;">
 		<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
            	<li id="release" class="active"><a href="#releasing" data-toggle="tab">正在热映</a></li>
       	    <li id="all"><a href="#allMovies" data-toggle="tab">全部影片</a></li>

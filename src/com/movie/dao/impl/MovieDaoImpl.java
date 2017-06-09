@@ -44,7 +44,7 @@ public class MovieDaoImpl  implements MovieDao {
 			
 			Query query = session.createQuery("from ReleaseMovie");
 			list = query.list();
-			System.out.println("m:"+((ReleaseMovie)list.get(2)).getMovieName());
+			
 //			session.close();
 //			sessionFactory.close();
 		} catch (Exception e) {
