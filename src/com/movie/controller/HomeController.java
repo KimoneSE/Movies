@@ -1,6 +1,7 @@
 package com.movie.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,11 @@ public class HomeController {
 		List list = movieService.getAllRelease();
 		
 		req.setAttribute("release", list);
+		
+		List rank = movieService.getRank();
+		
+		req.setAttribute("rank", rank);
 		return "index";
 	}
+	
 }

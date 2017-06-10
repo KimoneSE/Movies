@@ -20,4 +20,9 @@ public class MovieManageBean implements MovieManageService{
 		return movieDao.getAllRelease();
 	}
 
+	@Override
+	public List getRank() {
+		return movieDao.getRank();
+	}
+
 }
