@@ -47,9 +47,17 @@ public class MovieManageBean implements MovieManageService{
 		// TODO Auto-generated method stub
 		Map map = new HashMap();
 		
-		ReleaseMovie rm = movieDao.getRelease(mname);
-		ComingMovie cm = movieDao.getComing(mname);
-		Movie m = movieDao.getMovie(mname);
+		Movie movie = movieDao.getMovie(mname);
+		
+		if(movie!=null){
+			map.put("name", movie.getMovie());
+			map.put("img", movie.getImg());
+			map.put("duration", movie.getDuring());
+			map.put("region", movie.getRegion());
+			map.put("releaseTime", movie.getReleaseTime());
+			map.put("score", (double)movie.getScore()/10);
+			map.put("introduction", movie.getIntroduce());
+		}
 		return map;
 	}
 

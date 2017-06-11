@@ -1,5 +1,7 @@
 package com.movie.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,5 +20,11 @@ public class MovieController {
 	@RequestMapping("/Movie")
 	private String showAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {  
 		
+		String mname = req.getParameter("mname");
+		Map detail = movieService.getDetail(mname);
+		
+		req.setAttribute("detail", detail);
+		
+		return "moviedetail";
 	}
 }

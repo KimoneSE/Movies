@@ -12,7 +12,18 @@
 <body>
 
 	<div>
-		<div style=""></div>
+	<%Map detail = (Map)request.getAttribute("detail"); %>
+		<div style="">
+		<div><%=detail.get("name") %></div>
+		<div>
+		<img src="<%=detail.get("img") %>"/>
+		</div>
+		<div>
+		<div>制片国家/地区：<span><%=detail.get("region") %></span></div>
+		<div>时长：<span><%=detail.get("duration") %></span></div>
+		<div>上映日期：<span><%=detail.get("releaseTime") %></span></div>
+		</div>
+		</div>
 
 		<div id="myContent"
 			style="min-height: 40px; width: 80%; margin-top: 30px; margin-left: 5%;">

@@ -17,7 +17,7 @@ public class Movie {
 	private String introduce;
 	private String during;
 	private String img;
-	private String score;
+	private int score;
 
 	@Id
 	@Column(name="movie")
@@ -75,11 +75,11 @@ public class Movie {
 	}
 
 	@Column(name="score")
-	public String getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 
