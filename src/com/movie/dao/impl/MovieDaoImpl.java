@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.movie.dao.MovieDao;
+import com.movie.model.ComingMovie;
+import com.movie.model.Movie;
+import com.movie.model.Rank;
 import com.movie.model.ReleaseMovie;
 
 @Repository
@@ -20,15 +23,6 @@ public class MovieDaoImpl  implements MovieDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session session;
-	private static MovieDaoImpl movieDao = new MovieDaoImpl();
-	
-	private MovieDaoImpl(){
-		
-	}
-	
-	public static MovieDaoImpl getInstance(){
-		return movieDao;
-	}
 
 	@Override
 	public List getAllRelease() {
@@ -36,17 +30,11 @@ public class MovieDaoImpl  implements MovieDao {
 		List list = null;
 		
 		try {
-//			config = new Configuration().configure();
-//			config.addAnnotatedClass(ReleaseMovie.class);
-//			serviceRegistry =new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
-//			sessionFactory=config.buildSessionFactory(serviceRegistry);	
 			session=sessionFactory.getCurrentSession();
 			
-			Query query = session.createQuery("from ReleaseMovie");
+			Query query = session.createQuery("from ReleaseMovie order by time desc");
 			list = query.list();
 			
-//			session.close();
-//			sessionFactory.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -60,6 +48,127 @@ public class MovieDaoImpl  implements MovieDao {
 		String sql = "from Rank";
 		List list = session.createQuery(sql).list();
 		return list;
+	}
+
+	@Override
+	public List getAllMovies() {
+		// TODO Auto-generated method stub
+		List list = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Movie");
+			list = query.list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
+	@Override
+	public List getAllComing() {
+		// TODO Auto-generated method stub
+		List list = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from ComingMovie");
+			list = query.list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
+	@Override
+	public ReleaseMovie getRelease(String mname) {
+		// TODO Auto-generated method stub
+		ReleaseMovie rm = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from ReleaseMovie where movieName='"+mname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				rm = (ReleaseMovie) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return rm;
+	}
+
+	@Override
+	public ComingMovie getComing(String mname) {
+		// TODO Auto-generated method stub
+		ComingMovie cm = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from ReleaseMovie where movie='"+mname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				cm = (ComingMovie) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return cm;
+	}
+
+	@Override
+	public Movie getMovie(String mname) {
+		// TODO Auto-generated method stub
+		Movie m = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Movie where movie='"+mname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				m = (Movie) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return m;
+	}
+
+	@Override
+	public double getBoxoffice(String mname) {
+		// TODO Auto-generated method stub
+		double boxoffice = 0.00;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Rank where movie='"+mname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				Rank r = (Rank) list.get(0);
+				boxoffice = r.getBoxOffice();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return boxoffice;
 	}
 
 }

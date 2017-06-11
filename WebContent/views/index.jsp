@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.movie.model.ReleaseMovie" %>
-<%@ page import="com.movie.model.Rank" %>
+<%@ page import="com.movie.model.*" %>
 <%@ page import="java.util.*" %>
 <html>
 <head>
@@ -72,14 +71,16 @@
         
         <%
         
-        for(int i = 0;i<3;i++){
+        List alist = (List)request.getAttribute("all");
+        for(int i = 0;i<alist.size();i++){
+        	Movie m = (Movie)alist.get(i);
         	
         	out.println("<a class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" href=\""
         	+request.getContextPath()+"/"+""+"\">"
         	+"<div style=\"width:200px;\">"
-        	+" <img src='"+1+"' height=\"200\" width=\"200\"/>"
-        	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+"加勒比海盗"
-        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+"8.0分"+"</span></div>"
+        	+" <img src='"+m.getImg()+"' height=\"200\" width=\"200\"/>"
+        	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+m.getMovie()
+        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+m.getScore()+"分"+"</span></div>"
         	+" </div> </a>");
         }
         %>
@@ -88,7 +89,25 @@
 					
 				</div>
 				<div class="tab-pane fade" id="comingMovies">
-					
+					<div style="margin-top: 4%;width:100%;">
+        
+        <%
+        
+        List clist = (List)request.getAttribute("coming");
+        for(int i = 0;i<clist.size();i++){
+        	ComingMovie cm = (ComingMovie)clist.get(i);
+        	
+        	out.println("<a class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" href=\""
+        	+request.getContextPath()+"/"+""+"\">"
+        	+"<div style=\"width:200px;\">"
+        	+" <img src='"+cm.getImg()+"' height=\"200\" width=\"200\"/>"
+        	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+cm.getMovie()
+        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+cm.getTime()+"</span></div>"
+        	+" </div> </a>");
+        }
+        %>
+
+        </div>
 				</div>
 			</div>
 		</div>
