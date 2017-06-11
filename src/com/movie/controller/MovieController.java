@@ -1,5 +1,6 @@
 package com.movie.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,11 @@ public class MovieController {
 	private String showAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {  
 		
 		String mname = req.getParameter("mname");
-		Map detail = movieService.getDetail(mname);
-		
+		Map detail = movieService.getDetail(mname);		
 		req.setAttribute("detail", detail);
+		
+		List comments = movieService.getComments(mname);
+		req.setAttribute("comments", comments);
 		
 		return "moviedetail";
 	}

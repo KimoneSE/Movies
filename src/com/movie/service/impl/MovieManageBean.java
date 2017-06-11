@@ -48,6 +48,8 @@ public class MovieManageBean implements MovieManageService{
 		Map map = new HashMap();
 		
 		Movie movie = movieDao.getMovie(mname);
+		List actors = movieDao.getActors(mname);
+		List directors = movieDao.getDirectors(mname);
 		
 		if(movie!=null){
 			map.put("name", movie.getMovie());
@@ -57,8 +59,16 @@ public class MovieManageBean implements MovieManageService{
 			map.put("releaseTime", movie.getReleaseTime());
 			map.put("score", (double)movie.getScore()/10);
 			map.put("introduction", movie.getIntroduce());
+			map.put("actors", actors);
+			map.put("directors", directors);
 		}
 		return map;
+	}
+
+	@Override
+	public List getComments(String mname) {
+		// TODO Auto-generated method stub
+		return movieDao.getComments(mname);
 	}
 
 }

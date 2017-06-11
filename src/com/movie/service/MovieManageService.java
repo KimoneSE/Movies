@@ -14,5 +14,7 @@ public interface MovieManageService {
 	public List getRank();
 	
 	public Map getDetail(String mname);
+	
+	public List getComments(String mname);
 
 }

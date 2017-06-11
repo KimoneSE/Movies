@@ -24,4 +24,10 @@ public interface MovieDao {
 	
 	public double getBoxoffice(String mname);
 	
+	public List getComments(String mname);
+	
+	public List getActors(String mname);
+	
+	public List getDirectors(String mname);
+	
 }

@@ -53,12 +53,12 @@
         List rlist = (List)request.getAttribute("release");
         for(int i = 0;i<rlist.size();i++){
         	ReleaseMovie rm = (ReleaseMovie)rlist.get(i);
-        	out.println("<a class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" href=\""
+        	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+rm.getMovieName()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" "
         	+request.getContextPath()+"/"+""+"\">"
         	+"<div style=\"width:200px;\">"
         	+" <img src='"+rm.getImg()+"' height=\"200\" width=\"200\"/>"
         	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+rm.getMovieName()
-        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+rm.getScore()+"分"+"</span></div>"
+        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+rm.getScore().toString()+"分"+"</span></div>"
         	+" </div> </a>");
         }
         %>
@@ -75,7 +75,7 @@
         for(int i = 0;i<alist.size();i++){
         	Movie m = (Movie)alist.get(i);
         	
-        	out.println("<a class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" href=\""
+        	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+m.getMovie()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" "
         	+request.getContextPath()+"/"+""+"\">"
         	+"<div style=\"width:200px;\">"
         	+" <img src='"+m.getImg()+"' height=\"200\" width=\"200\"/>"
@@ -97,7 +97,7 @@
         for(int i = 0;i<clist.size();i++){
         	ComingMovie cm = (ComingMovie)clist.get(i);
         	
-        	out.println("<a class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" href=\""
+        	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+cm.getMovie()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" "
         	+request.getContextPath()+"/"+""+"\">"
         	+"<div style=\"width:200px;\">"
         	+" <img src='"+cm.getImg()+"' height=\"200\" width=\"200\"/>"

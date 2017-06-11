@@ -19,6 +19,7 @@ public class Comment {
 	private Date time;
 	private double score;
 	private String comment;
+	private String username;
 
 	@Id
 	@Column(name="movie")
@@ -56,6 +57,15 @@ public class Comment {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	@Column(name="username")
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

@@ -171,4 +171,58 @@ public class MovieDaoImpl  implements MovieDao {
 		return boxoffice;
 	}
 
+	@Override
+	public List getComments(String mname) {
+		// TODO Auto-generated method stub
+		List list = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Comment where movie='"+mname+"' order by time desc");
+			list = query.list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
+	@Override
+	public List getActors(String mname) {
+		// TODO Auto-generated method stub
+		List list = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Actor where movie='"+mname+"'");
+			list = query.list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
+	@Override
+	public List getDirectors(String mname) {
+		// TODO Auto-generated method stub
+		List list = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Director where movie='"+mname+"'");
+			list = query.list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return list;
+	}
+
 }
