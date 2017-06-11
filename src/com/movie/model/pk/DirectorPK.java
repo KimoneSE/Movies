@@ -11,7 +11,7 @@ public class DirectorPK implements Serializable {
 	@Column(name = "movieName")
 	private String movieName;
 	@Column(name = "dirctorName")
-	private String directorName;
+	private String dirctorName;
 
 	public String getMovieName() {
 		return movieName;
@@ -21,11 +21,11 @@ public class DirectorPK implements Serializable {
 		this.movieName = movieName;
 	}
 
-	public String getDirectorName() {
-		return directorName;
+	public String getDirctorName() {
+		return dirctorName;
 	}
 
-	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
+	public void setDirctorName(String dirctorName) {
+		this.dirctorName = dirctorName;
 	}
 }

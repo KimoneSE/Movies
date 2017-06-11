@@ -14,7 +14,8 @@ import com.movie.model.pk.DirectorPK;
 public class Director {
 
 	private String movieName;
-	private String directorName;
+	private String dirctorName;
+//	private String directorName;
 
 	@Id
 	@Column(name = "movieName")
@@ -28,12 +29,21 @@ public class Director {
 
 	@Id
 	@Column(name = "dirctorName")
-	public String getDirectorName() {
-		return directorName;
+	public String getDirctorName() {
+		return dirctorName;
 	}
 
-	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
+	public void setDirctorName(String dirctorName) {
+		this.dirctorName = dirctorName;
 	}
+
+//	@Column(name = "directorName")
+//	public String getDirectorName() {
+//		return directorName;
+//	}
+//
+//	public void setDirectorName(String directorName) {
+//		this.directorName = directorName;
+//	}
 
 }

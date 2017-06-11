@@ -79,7 +79,7 @@
 						导演：<span> <%
  	for (int di = 0; di < directors.size(); di++) {
  		Director d = (Director) directors.get(di);
- 		out.print(d.getDirectorName());
+ 		out.print(d.getDirctorName());
  		if (di < directors.size() - 1) {
  			out.print("/");
  		}
