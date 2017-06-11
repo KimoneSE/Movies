@@ -6,15 +6,26 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import com.movie.model.pk.ActorPK;
+import com.movie.model.pk.PricePK;
 
 @Entity
-@Table(name = "actor_list")
-@IdClass(ActorPK.class)
-public class Actor {
+@Table(name = "price")
+@IdClass(PricePK.class)
+public class Price {
 
+	private String id;
 	private String movieName;
-	private String actorName;
+	private String price;
+
+	@Id
+	@Column(name="id")
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	@Id
 	@Column(name="movieName")
@@ -26,14 +37,13 @@ public class Actor {
 		this.movieName = movieName;
 	}
 
-	@Id
-	@Column(name="actorName")
-	public String getActorName() {
-		return actorName;
+	@Column(name="price")
+	public String getPrice() {
+		return price;
 	}
 
-	public void setActorName(String actorName) {
-		this.actorName = actorName;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 }

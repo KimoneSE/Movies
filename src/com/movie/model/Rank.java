@@ -1,12 +1,14 @@
 package com.movie.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.movie.model.pk.RankPK;
 import com.movie.model.pk.ReleaseMoviePK;
@@ -30,6 +32,7 @@ public class Rank {
 	}
 	
 	@Id
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="time")
 	public Date getTime() {
 		return time;

@@ -9,25 +9,38 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Embeddable
-public class RankPK implements Serializable{
-	@Column(name = "movie")
-	private String movie;
+public class PriceDetailPK implements Serializable {
+
+	@Column(name = "id")
+	private String id;
+	@Column(name = "movieName")
+	private String movieName;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "time")
 	private Date time;
-	
-	public String getMovie() {
-		return movie;
+
+	public String getId() {
+		return id;
 	}
-	public void setMovie(String movie) {
-		this.movie = movie;
+
+	public void setId(String id) {
+		this.id = id;
 	}
+
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
 	public Date getTime() {
 		return time;
 	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	
-	
+
 }

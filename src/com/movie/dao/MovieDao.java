@@ -2,6 +2,7 @@ package com.movie.dao;
 
 import java.util.List;
 
+import com.movie.model.Cinema;
 import com.movie.model.ComingMovie;
 import com.movie.model.DownloadLink;
 import com.movie.model.Movie;
@@ -32,5 +33,15 @@ public interface MovieDao {
 	public List getActors(String mname);
 	
 	public List getDirectors(String mname);
+	
+	public List getAllCinemas();
+	
+	public List getAllCinemaNames();
+	
+	public Cinema getCinema(String cid);
+	
+	public List getAllPrice(String mname);
+	
+	public List getAllPriceDetail(String mname,String cid);
 	
 }

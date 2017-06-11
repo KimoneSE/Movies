@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.movie.service.MovieManageService;
 
+import net.sf.json.JSONArray;
+
 @Controller
 public class MovieController {
 
@@ -27,6 +29,13 @@ public class MovieController {
 		
 		List comments = movieService.getComments(mname);
 		req.setAttribute("comments", comments);
+		
+		JSONArray cnames = movieService.getAllCinemaNames();
+		req.setAttribute("cnames", cnames);
+			
+		List prices = movieService.getAllPriceInfo(mname);
+		req.setAttribute("prices", prices);
+//		System.out.println(cnames);
 		
 		return "moviedetail";
 	}
