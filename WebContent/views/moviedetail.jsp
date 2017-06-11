@@ -18,6 +18,21 @@
        		font-size:16px;
        		margin-top:10px;
        	}
+       	.panel-bottom-border {
+    		border-bottom: solid 1px #e0e0e0;
+    		cursor: HAND;
+		}
+		.panel-top-border {
+    		border-top: solid 1px #e0e0e0;
+		}
+		#cinema_name,#price{
+			font-size:16px;
+			margin-bottom:5px;
+		}
+		#address{
+			color:grey;
+			margin-bottom:5px;
+		}
 	</style>
 </head>
 <body>
@@ -131,10 +146,18 @@
 				</div>
 
 				<div class="tab-pane fade" id="price">
-					<div style="margin-top: 4%; width: 100%;"></div>
+					<div style="margin-top: 10px; width: 100%;">
+						<div class="panel panel-bottom-border" onclick=showDetail()>
+							<div class="row">
+								<div class="col-xs-2" id="cinema_name">南京新街口影城</div>
+								<div class="col-xs-10" id="price">39-40元</div>
+							</div>
+							<div id="address">杨将军巷9号曼度文化广场3楼（太平北路1912对面）</div>
+							<!-- id改为每个电影院的名称 -->
+							<div id="priceContent"></div>
+						</div>
+					</div>
 				</div>
-
-
 			</div>
 		</div>
 
@@ -145,4 +168,20 @@
 	<script src="${pageContext.request.contextPath }/assets/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath }/assets/js/bootstrap.js"></script>
 </body>
+
+<script>
+	//$(document).ready(function(){});
+	var count=0;
+	function showDetail(cinema_id,movie_name){
+		if(count%2==0){
+			$("#priceContent").empty();
+			var temp="<div class=\"panel panel-top-border\"><div class=\"row\"><div class=\"col-xs-3\">场次时间</div><div class=\"col-xs-9\"><a href=\"\">去订票</a></div></div></div>"
+			$("#priceContent").append(temp);
+		}else{
+			$("#priceContent").empty();
+		}
+		count++;
+		
+	}
+</script>
 </html>
