@@ -35,8 +35,32 @@
 					</div>
 					<div class="number"><%=detail.get("score")%>分
 					</div>
-					<div class="word">导演：</div>
-					<div class="word">主演：</div>
+					<%
+					List directors = (List)detail.get("directors");
+					List actors = (List)detail.get("actors");
+					%>
+					<div class="word">导演：<span>
+					<%
+					for(int di = 0;di<directors.size();di++){
+						Director d = (Director)directors.get(di);
+						out.print(d.getDirectorName());
+						if(di<directors.size()-1){
+							out.print("/");
+						}
+					}
+					%>
+					</span></div>
+					<div class="word">主演：<span>
+					<%
+					for(int ai = 0;ai<actors.size();ai++){
+						Actor a = (Actor)actors.get(ai);
+						out.print(a.getActorName());
+						if(ai<actors.size()-1){
+							out.print("/");
+						}
+					}
+					%>
+					</span></div>
 					<div class="word">
 						制片国家/地区：<span><%=detail.get("region")%></span>
 					</div>
@@ -46,9 +70,14 @@
 					<div class="word">
 						上映日期：<span><%=detail.get("releaseTime")%></span>
 					</div>
-					<div class="word">
-						下载链接：<span><%=detail.get("releaseTime")%></span>
-					</div>
+					<%
+					if(detail.get("downloadlink")!=null){
+						out.println("<div class=\"word\">"
+								+"下载链接：<span>"+detail.get("downloadlink")
+								+"</span></div>");
+					}
+					%>
+					
 				</div>
 			</div>
 		</div>

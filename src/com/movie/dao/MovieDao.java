@@ -3,6 +3,7 @@ package com.movie.dao;
 import java.util.List;
 
 import com.movie.model.ComingMovie;
+import com.movie.model.DownloadLink;
 import com.movie.model.Movie;
 import com.movie.model.ReleaseMovie;
 
@@ -21,6 +22,8 @@ public interface MovieDao {
 	public ComingMovie getComing(String mname);
 	
 	public Movie getMovie(String mname);
+	
+	public DownloadLink getDownloadLink(String mname);
 	
 	public double getBoxoffice(String mname);
 	

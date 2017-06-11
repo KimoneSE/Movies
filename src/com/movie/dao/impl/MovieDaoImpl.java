@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.movie.dao.MovieDao;
 import com.movie.model.ComingMovie;
+import com.movie.model.DownloadLink;
 import com.movie.model.Movie;
 import com.movie.model.Rank;
 import com.movie.model.ReleaseMovie;
@@ -197,7 +198,7 @@ public class MovieDaoImpl  implements MovieDao {
 		try {
 			session=sessionFactory.getCurrentSession();
 			
-			Query query = session.createQuery("from Actor where movie='"+mname+"'");
+			Query query = session.createQuery("from Actor where movieName='"+mname+"'");
 			list = query.list();
 			
 		} catch (Exception e) {
@@ -215,7 +216,7 @@ public class MovieDaoImpl  implements MovieDao {
 		try {
 			session=sessionFactory.getCurrentSession();
 			
-			Query query = session.createQuery("from Director where movie='"+mname+"'");
+			Query query = session.createQuery("from Director where movieName='"+mname+"'");
 			list = query.list();
 			
 		} catch (Exception e) {
@@ -223,6 +224,27 @@ public class MovieDaoImpl  implements MovieDao {
 		}	
 		
 		return list;
+	}
+
+	@Override
+	public DownloadLink getDownloadLink(String mname) {
+		// TODO Auto-generated method stub
+		DownloadLink dl = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from DownloadLink where name='"+mname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				dl = (DownloadLink) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return dl;
 	}
 
 }

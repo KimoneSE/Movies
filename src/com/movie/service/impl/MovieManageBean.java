@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.movie.dao.MovieDao;
 import com.movie.model.ComingMovie;
+import com.movie.model.DownloadLink;
 import com.movie.model.Movie;
 import com.movie.model.ReleaseMovie;
 import com.movie.service.MovieManageService;
@@ -48,6 +49,7 @@ public class MovieManageBean implements MovieManageService{
 		Map map = new HashMap();
 		
 		Movie movie = movieDao.getMovie(mname);
+		DownloadLink dl = movieDao.getDownloadLink(mname);
 		List actors = movieDao.getActors(mname);
 		List directors = movieDao.getDirectors(mname);
 		
@@ -59,9 +61,20 @@ public class MovieManageBean implements MovieManageService{
 			map.put("releaseTime", movie.getReleaseTime());
 			map.put("score", (double)movie.getScore()/10);
 			map.put("introduction", movie.getIntroduce());
+		}
+		
+		if(actors!=null){
 			map.put("actors", actors);
+		}
+		
+		if(directors!=null){
 			map.put("directors", directors);
 		}
+		
+		if(dl!=null){
+			map.put("downloadlink", dl);
+		}
+		
 		return map;
 	}
 
