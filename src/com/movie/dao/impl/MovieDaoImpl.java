@@ -45,7 +45,7 @@ public class MovieDaoImpl  implements MovieDao {
 	@Override
 	public List getRank() {
 		session = sessionFactory.getCurrentSession();
-		String sql = "from Rank";
+		String sql = "from Rank order by boxOffice desc";
 		List list = session.createQuery(sql).list();
 		return list;
 	}
