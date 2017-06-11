@@ -144,19 +144,22 @@
 
 					</div>
 				</div>
-
 				<div class="tab-pane fade" id="price">
 					<div style="margin-top: 10px; width: 100%;">
-						<div class="panel panel-bottom-border" onclick=showDetail()>
-							<div class="row">
-								<div class="col-xs-2" id="cinema_name">南京新街口影城</div>
-								<div class="col-xs-10" id="price">39-40元</div>
-							</div>
-							<div id="address">杨将军巷9号曼度文化广场3楼（太平北路1912对面）</div>
-							<!-- id改为每个电影院的名称 -->
-							<div id="priceContent"></div>
-						</div>
-					</div>
+					<%
+					for(int i = 0;i<3;i++){
+						out.println("<div class=\"panel panel-bottom-border\" onclick=showDetail(1,'"+i+"')>"
+								+"<div class=\"row\">"
+										+"<div class=\"col-xs-2\" id=\"cinema_name\">南京新街口影城</div>"
+										+"<div class=\"col-xs-10\" id=\"price\">"+"39-40元"+"</div>"
+										+"</div>"
+										+"<div id=\"address\">杨将军巷9号曼度文化广场3楼（太平北路1912对面）</div>"
+					//id改为每个电影院的名称 
+					+"<div id="+i+"></div>"
+					+"</div>");
+					}
+					%>
+						
 				</div>
 			</div>
 		</div>
@@ -170,18 +173,28 @@
 </body>
 
 <script>
-	//$(document).ready(function(){});
-	var count=0;
-	function showDetail(cinema_id,movie_name){
-		if(count%2==0){
-			$("#priceContent").empty();
-			var temp="<div class=\"panel panel-top-border\"><div class=\"row\"><div class=\"col-xs-3\">场次时间</div><div class=\"col-xs-9\"><a href=\"\">去订票</a></div></div></div>"
-			$("#priceContent").append(temp);
-		}else{
-			$("#priceContent").empty();
+	var map = new Map();
+	$(document).ready(function(){
+		var list=['0','1','2'];
+		init(list);
+	});
+
+	
+	function init(cinemaNameList){
+		for(var i=0;i<cinemaNameList.length;i++){
+			map[cinemaNameList[i]]=0;
 		}
-		count++;
-		
+	}
+	
+	function showDetail(cinema_id,movie_name){
+		$("#"+movie_name).empty();
+		for(i=0;i<3;i++){
+			if(map[movie_name]%2==0){
+				var temp="<div class=\"panel panel-top-border\"><div class=\"row\"><div class=\"col-xs-3\">场次时间</div><div class=\"col-xs-9\"><a href=\"\">去订票</a></div></div></div>"
+				$("#"+movie_name).append(temp);
+			}
+		}
+		map[movie_name]++;
 	}
 </script>
 </html>
