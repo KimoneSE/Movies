@@ -8,6 +8,17 @@
 	href="<%=response.encodeURL(request.getContextPath() + "/assets/css/bootstrap.css")%>">
 <link rel="stylesheet"
 	href="<%=response.encodeURL(request.getContextPath() + "/assets/css/custom.css")%>">
+	<style type="text/css">
+		.number{
+       		font-size:18px;
+			color: #ff8000;	
+			margin-top:10px;
+       	}
+       	.word{
+       		font-size:16px;
+       		margin-top:10px;
+       	}
+	</style>
 </head>
 <body>
 
@@ -80,10 +91,9 @@
 					
 				</div>
 			</div>
-		</div>
 
 		<div id="myContent"
-			style="min-height: 40px; width: 80%; margin-top: 30px; margin-left: 5%;">
+			style="min-height: 40px; width: 80%; margin-top: 30px;">
 			<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
 				<li id="intro" class="active"><a href="#introduction"
 					data-toggle="tab">简介</a></li>
@@ -126,6 +136,7 @@
 
 
 			</div>
+		</div>
 
 		</div>
 	</div>
