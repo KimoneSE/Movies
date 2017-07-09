@@ -135,7 +135,7 @@
 				Movie r =  (Movie)recommend.get(i);
 				String movieName = r.getMovieName();
 				int j=i+1;
-				out.println("<a class=\"panel\" style=\"margin-left:3%;height:60px;display:inline-block;\" href='http://localhost:8080/Movies/Movie?mname="+movieName+"'><div><i>"+j
+				out.println("<a class=\"panel\" style=\"margin-left:3%;height:60px;\" href='http://localhost:8080/Movies/Movie?mname="+movieName+"'><div><i>"+j
 						+"&nbsp;&nbsp;</i><img src='"+r.getPoster()+"' style='width:60px;height:60px;display:inline-block;'/>&nbsp;&nbsp;"+movieName+"</div></a>");
 			}
 			%>

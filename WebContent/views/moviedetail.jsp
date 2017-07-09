@@ -136,7 +136,7 @@
 					</div>
 					<%
 						if (detail.get("boxOffice") != null) {
-							out.println("<div class=\"word\">" + "票房：<span>" + detail.get("boxOffice") + "</span></div>");
+							out.println("<div class=\"word\">" + "票房：<span>" + detail.get("boxOffice") + "亿</span></div>");
 						}
 						//	if (detail.get("downloadlink") != null) {
 						//		out.println("<div class=\"word\">" + "下载链接：<span>" + detail.get("downloadlink") + "</span></div>");
@@ -292,7 +292,7 @@ window.onload = function(){
 	      			data:{'movieName':'<%=movieName%>','username':'<%=username%>','score':this.index+1},
 	      			
 	      			success:function(data){
-	      				alert(1);
+	      				alert("评价成功");
 	      			},
 	      			error: function() {
 	      				showTip("连接错误，请稍后再试");
