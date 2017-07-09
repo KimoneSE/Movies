@@ -27,7 +27,10 @@
         <div class="panel-body panel-top-border">
         	<%
 		 	List rank = (List)request.getAttribute("rank");
-			for(int i=0;i<rank.size();i++){
+        	int len = rank.size();
+        	if(len>10)
+        		len = 10;
+			for(int i=0;i<len;i++){
 				Movie rk =  (Movie)rank.get(i);
 				String movieName = rk.getMovieName();
 				int j=i+1;
@@ -41,30 +44,30 @@
 	<div class="col-xs-9">
 	
 	<div id="myContent" style="min-height: 40px;width:80%;margin-top:30px;margin-left:5%;">
-		<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
-           	<li id="release" class="active"><a href="#releasing" data-toggle="tab">正在热映</a></li>
+		<!--<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
+           	<li id="release" class="active"><a href="#releasing" data-toggle="tab">正在热映</a></li>-->
            	<!-- <li id="coming"><a href="#comingMovies" data-toggle="tab">即将上映</a></li> -->
       	    <!-- <li id="all"><a href="#allMovies" data-toggle="tab">全部影片</a></li> -->
-        </ul>
+       <!-- </ul> -->
         <div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active" id="releasing">
+				<!--<div class="tab-pane fade in active" id="releasing"> -->
 					<div style="margin-top: 4%;width:100%;">
         
         <%
-        List rlist = (List)request.getAttribute("rlist");
+        List rlist = (List)request.getAttribute("release");
         for(int i = 0;i<rlist.size();i++){
-        	ReleaseMovie rm = (ReleaseMovie)rlist.get(i);
+        	Movie rm = (Movie)rlist.get(i);
         	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+rm.getMovieName()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" "
         	+request.getContextPath()+"/"+""+"\">"
         	+"<div style=\"width:200px;\">"
-        	+" <img src='"+rm.getImg()+"' height=\"200\" width=\"200\"/>"
+        	+" <img src='"+rm.getPoster()+"' height=\"200\" width=\"200\"/>"
         	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+rm.getMovieName()
-        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+rm.getScore().toString()+"分"+"</span></div>"
+        	+"<span style=\"color:red;font-size: 18px;float:right;\">"+rm.getScore()+"分"+"</span></div>"
         	+" </div> </a>");
         }
         %>
 
-        </div>
+        	<!--</div> -->
 					
 	</div>
 				

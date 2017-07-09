@@ -21,6 +21,10 @@ public interface MovieDao {
 	
 	public Movie getMovie(int id);
 	
+	public Movie getMovie(String name);
+	
+	public int getMovieId(String name);
+	
 //	public DownloadLink getDownloadLink(String mname);
 	
 	public double getBoxoffice(String mname);

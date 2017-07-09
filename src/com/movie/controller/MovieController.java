@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.movie.model.Movie;
 import com.movie.service.MovieManageService;
 
 import net.sf.json.JSONArray;
@@ -23,10 +24,12 @@ public class MovieController {
 	@RequestMapping("/Movie")
 	private String showAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {  
 		
-		int mid = Integer.parseInt(req.getParameter("id"));
-		Map detail = movieService.getDetail(mid);		
+		String mname = req.getParameter("mname");
+		Map detail = movieService.getDetail(mname);		
 		req.setAttribute("detail", detail);
 		
+		Movie movie = (Movie) detail.get("movie");
+		int mid = movie.getMovieId();
 		List comments = movieService.getComments(mid);
 		req.setAttribute("comments", comments);
 		

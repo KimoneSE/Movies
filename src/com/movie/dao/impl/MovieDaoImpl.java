@@ -14,8 +14,8 @@ import com.movie.model.Cinema;
 import com.movie.model.Movie;
 
 @Repository
-public class MovieDaoImpl  implements MovieDao {
-	
+public class MovieDaoImpl implements MovieDao {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -24,19 +24,19 @@ public class MovieDaoImpl  implements MovieDao {
 	public List getAllRelease() {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-//			Date today = new Date();
-//			SimpleDateFormat adf = new SimpleDateFormat("yyyy-MM-dd");
-//			 String dateString = adf.format(today);
+			session = sessionFactory.getCurrentSession();
+			// Date today = new Date();
+			// SimpleDateFormat adf = new SimpleDateFormat("yyyy-MM-dd");
+			// String dateString = adf.format(today);
 			Query query = session.createQuery("from Movie");
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
@@ -48,124 +48,166 @@ public class MovieDaoImpl  implements MovieDao {
 		return list;
 	}
 
-//	@Override
-//	public List getAllMovies() {
-//		// TODO Auto-generated method stub
-//		List list = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from Movie");
-//			list = query.list();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		
-//		return list;
-//	}
-//
-//	@Override
-//	public List getAllComing() {
-//		// TODO Auto-generated method stub
-//		List list = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from ComingMovie");
-//			list = query.list();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		
-//		return list;
-//	}
+	// @Override
+	// public List getAllMovies() {
+	// // TODO Auto-generated method stub
+	// List list = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from Movie");
+	// list = query.list();
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// return list;
+	// }
+	//
+	// @Override
+	// public List getAllComing() {
+	// // TODO Auto-generated method stub
+	// List list = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from ComingMovie");
+	// list = query.list();
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// return list;
+	// }
 
-//	@Override
-//	public ReleaseMovie getRelease(String mname) {
-//		// TODO Auto-generated method stub
-//		ReleaseMovie rm = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from ReleaseMovie where movieName='"+mname+"'");
-//			List list = query.list();
-//			
-//			if(list!=null&&list.size()>0){
-//				rm = (ReleaseMovie) list.get(0);
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		return rm;
-//	}
-//
-//	@Override
-//	public ComingMovie getComing(String mname) {
-//		// TODO Auto-generated method stub
-//		ComingMovie cm = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from ReleaseMovie where movie='"+mname+"'");
-//			List list = query.list();
-//			
-//			if(list!=null&&list.size()>0){
-//				cm = (ComingMovie) list.get(0);
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		return cm;
-//	}
+	// @Override
+	// public ReleaseMovie getRelease(String mname) {
+	// // TODO Auto-generated method stub
+	// ReleaseMovie rm = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from ReleaseMovie where
+	// movieName='"+mname+"'");
+	// List list = query.list();
+	//
+	// if(list!=null&&list.size()>0){
+	// rm = (ReleaseMovie) list.get(0);
+	// }
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return rm;
+	// }
+	//
+	// @Override
+	// public ComingMovie getComing(String mname) {
+	// // TODO Auto-generated method stub
+	// ComingMovie cm = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from ReleaseMovie where
+	// movie='"+mname+"'");
+	// List list = query.list();
+	//
+	// if(list!=null&&list.size()>0){
+	// cm = (ComingMovie) list.get(0);
+	// }
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return cm;
+	// }
 
 	@Override
 	public Movie getMovie(int id) {
 		// TODO Auto-generated method stub
 		Movie m = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Movie where movieId="+id);
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Movie where movieId=" + id);
 			List list = query.list();
-			
-			if(list!=null&&list.size()>0){
+
+			if (list != null && list.size() > 0) {
 				m = (Movie) list.get(0);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return m;
+	}
+
+	public Movie getMovie(String name) {
+		Movie m = null;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Movie where movieName='" + name + "'");
+			List list = query.list();
+
+			if (list != null && list.size() > 0) {
+				m = (Movie) list.get(0);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return m;
+	}
+
+	@Override
+	public int getMovieId(String name) {
+		int id = 0;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("select movieId from Movie where movieName='" + name + "'");
+			List list = query.list();
+
+			if (list != null && list.size() > 0) {
+				id = (int) list.get(0);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return id;
 	}
 
 	@Override
 	public double getBoxoffice(String mname) {
 		// TODO Auto-generated method stub
 		double boxoffice = 0.00;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from BoxOffice where movieName='"+mname+"'");
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from BoxOffice where movieName='" + mname + "'");
 			List list = query.list();
-			
-			if(list!=null&&list.size()>0){
+
+			if (list != null && list.size() > 0) {
 				BoxOffice b = (BoxOffice) list.get(0);
 				boxoffice = b.getBoxOffice();
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return boxoffice;
 	}
 
@@ -173,17 +215,17 @@ public class MovieDaoImpl  implements MovieDao {
 	public List getComments(int id) {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Comment where movieId="+id+"' order by commentTime desc");
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Comment where movieId=" + id + "' order by commentTime desc");
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
@@ -191,17 +233,17 @@ public class MovieDaoImpl  implements MovieDao {
 	public List getActors(int id) {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Actor where movieId="+id);
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Actor where movieId=" + id);
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
@@ -209,144 +251,147 @@ public class MovieDaoImpl  implements MovieDao {
 	public List getDirectors(int id) {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Director where where movieId="+id);
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Director where where movieId=" + id);
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
-		return list;
-	}
-	
-	@Override
-	public List getTags(int id){
-		List list = null;
-		
-		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from MovieTag where where movieId="+id);
-			list = query.list();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
-//	@Override
-//	public DownloadLink getDownloadLink(String mname) {
-//		// TODO Auto-generated method stub
-//		DownloadLink dl = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from DownloadLink where name='"+mname+"'");
-//			List list = query.list();
-//			
-//			if(list!=null&&list.size()>0){
-//				dl = (DownloadLink) list.get(0);
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		return dl;
-//	}
+	@Override
+	public List getTags(int id) {
+		List list = null;
+
+		try {
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from MovieTag where where movieId=" + id);
+			list = query.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	// @Override
+	// public DownloadLink getDownloadLink(String mname) {
+	// // TODO Auto-generated method stub
+	// DownloadLink dl = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from DownloadLink where
+	// name='"+mname+"'");
+	// List list = query.list();
+	//
+	// if(list!=null&&list.size()>0){
+	// dl = (DownloadLink) list.get(0);
+	// }
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return dl;
+	// }
 
 	@Override
 	public List getAllCinemas() {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
+			session = sessionFactory.getCurrentSession();
+
 			Query query = session.createQuery("from Cinema");
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
 	@Override
-	public List getMovieTickets(int mid,int cid){
+	public List getMovieTickets(int mid, int cid) {
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Ticket where movieId="+mid+" and cinemaId="+cid);
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Ticket where movieId=" + mid + " and cinemaId=" + cid);
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
-	
-//	@Override
-//	public List getAllPrice(String mname) {
-//		// TODO Auto-generated method stub
-//		List list = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from Price where movieName='"+mname+"'");
-//			list = query.list();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		
-//		return list;
-//	}
-//
-//	@Override
-//	public List getAllPriceDetail(String mname,String cid) {
-//		// TODO Auto-generated method stub
-//		List list = null;
-//		
-//		try {
-//			session=sessionFactory.getCurrentSession();
-//			
-//			Query query = session.createQuery("from PriceDetail where id='"+cid+"' and movieName='"+mname+"'");
-//			list = query.list();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
-//		
-//		return list;
-//	}
+
+	// @Override
+	// public List getAllPrice(String mname) {
+	// // TODO Auto-generated method stub
+	// List list = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from Price where
+	// movieName='"+mname+"'");
+	// list = query.list();
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// return list;
+	// }
+	//
+	// @Override
+	// public List getAllPriceDetail(String mname,String cid) {
+	// // TODO Auto-generated method stub
+	// List list = null;
+	//
+	// try {
+	// session=sessionFactory.getCurrentSession();
+	//
+	// Query query = session.createQuery("from PriceDetail where id='"+cid+"'
+	// and movieName='"+mname+"'");
+	// list = query.list();
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// return list;
+	// }
 
 	@Override
 	public List getAllCinemaNames() {
 		// TODO Auto-generated method stub
 		List list = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
+			session = sessionFactory.getCurrentSession();
+
 			Query query = session.createQuery("select distinct cinemaName from Cinema");
 			list = query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		return list;
 	}
 
@@ -354,41 +399,41 @@ public class MovieDaoImpl  implements MovieDao {
 	public Cinema getCinema(int cid) {
 		// TODO Auto-generated method stub
 		Cinema c = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Cinema where cinemaId="+cid);
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Cinema where cinemaId=" + cid);
 			List list = query.list();
-			
-			if(list!=null&&list.size()>0){
+
+			if (list != null && list.size() > 0) {
 				c = (Cinema) list.get(0);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return c;
 	}
-	
+
 	@Override
 	public Cinema getCinema(String cname) {
 		// TODO Auto-generated method stub
 		Cinema c = null;
-		
+
 		try {
-			session=sessionFactory.getCurrentSession();
-			
-			Query query = session.createQuery("from Cinema where cinemaName='"+cname+"'");
+			session = sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("from Cinema where cinemaName='" + cname + "'");
 			List list = query.list();
-			
-			if(list!=null&&list.size()>0){
+
+			if (list != null && list.size() > 0) {
 				c = (Cinema) list.get(0);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return c;
 	}
 

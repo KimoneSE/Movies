@@ -44,11 +44,12 @@ public class MovieManageBean implements MovieManageService{
 //	}
 
 	@Override
-	public Map getDetail(int id) {
+	public Map getDetail(String name) {
 		// TODO Auto-generated method stub
 		Map map = new HashMap();
 		
-		Movie movie = movieDao.getMovie(id);
+		Movie movie = movieDao.getMovie(name);
+		int id = movie.getMovieId();
 //		DownloadLink dl = movieDao.getDownloadLink(mname);
 		List actors = movieDao.getActors(id);
 		List directors = movieDao.getDirectors(id);
