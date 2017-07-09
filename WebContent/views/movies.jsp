@@ -120,6 +120,27 @@
 				
 			</div>
 		</div>
+		
+		<div class="col-xs-3">
+	<div class="panel rank-panel" style="margin-left:10%;margin-top:30px;">
+		<div class="panel-heading">
+        	<h4 class="inline-title">你可能喜欢</h4>
+        </div>
+        <div class="panel-body panel-top-border">
+        	<%
+		 	List recommend = (List)request.getAttribute("recommend");
+       
+			for(int i=0;i<recommend.size();i++){
+				Movie r =  (Movie)recommend.get(i);
+				String movieName = r.getMovieName();
+				int j=i+1;
+				out.println("<div class=\"panel\" style=\"margin-left:3%\"><div><img src='"+r.getPoster()+"'/><i>"+j+"</i>&nbsp;&nbsp;"+movieName+"</div></div>");
+			}
+			%>
+        </div>
+	</div>
+		
+	</div>
 	</div>
 </div>
 		

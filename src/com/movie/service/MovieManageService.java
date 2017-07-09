@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.movie.model.Cinema;
+import com.movie.model.Movie;
 
 import net.sf.json.JSONArray;
 
@@ -16,6 +17,10 @@ public interface MovieManageService {
 //	public List getAllComing();
 	
 	public List getRank();
+	
+	public Movie getMovie(int mid);
+	
+	public Movie getMovie(String name);
 	
 	public Map getDetail(String name);
 	
