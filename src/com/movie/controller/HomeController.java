@@ -20,7 +20,7 @@ import com.movie.model.User;
 import com.movie.service.MovieManageService;
 import com.movie.service.ScoreManageService;
 import com.movie.service.UserManageService;
-import com.recommend.src.main.Starter;
+import com.movie.recommend.Starter;
 
 @Controller
 //@RequestMapping("/home")
