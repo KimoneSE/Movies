@@ -2,6 +2,8 @@ package com.movie.dao.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -30,7 +32,7 @@ public class MovieDaoImpl implements MovieDao {
 			// Date today = new Date();
 			// SimpleDateFormat adf = new SimpleDateFormat("yyyy-MM-dd");
 			// String dateString = adf.format(today);
-			Query query = session.createQuery("from Movie");
+			Query query = session.createQuery("from Movie order by releaseDate desc");
 			list = query.list();
 
 		} catch (Exception e) {
@@ -149,6 +151,7 @@ public class MovieDaoImpl implements MovieDao {
 		return m;
 	}
 
+	@Transactional
 	public Movie getMovie(String name) {
 		Movie m = null;
 
@@ -331,7 +334,8 @@ public class MovieDaoImpl implements MovieDao {
 
 			Query query = session.createQuery("from Ticket where movieId=" + mid + " and cinemaId=" + cid);
 			list = query.list();
-
+			if(list!=null)
+				System.out.println(list.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

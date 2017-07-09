@@ -45,9 +45,10 @@
 <%
 	Map detail = (Map) request.getAttribute("detail");
 	JSONArray cnames = (JSONArray) request.getAttribute("cnames");
+	String movieName = (String)request.getAttribute("movieName");
 %>
 
-<body onload='init(<%=cnames%>)'>
+<body onload="init(<%=cnames%>)">
 	<%@include file="common/userNavbar.jsp"%>
 	<%
 		Movie m = (Movie) detail.get("movie");
@@ -175,17 +176,24 @@
 						</div>
 					</div>
 
-					<div class="tab-pane fade" id="price">
+					<div class="tab-pane fade" id="price" onload="">
 						<div style="margin-top: 10px; width: 100%;">
-						<select id="cinema" onchange="getPrices()">
-						<%
-						for(int i = 0;i<cnames.size();i++){
-							String ci = cnames.get(i).toString();
-							out.println("<option value =\""+ci+"\">"+ci+"</option>");
-						}
-						%>
-						</select>
-						<div id="priceContent" onload="showPrice()"></div>
+						<form class="form-horizontal cinema_form"">
+							<div class="form-group">
+                    			<label class="col-xs-2">影院</label>
+                    			<div class="col-xs-10" style="width:50%;">
+                                    <select class="form-control" name="cinema" id="cinema" onchange="showPrices('<%=movieName %>')" >
+                                        <%
+										for(int i = 0;i<cnames.size();i++){
+											String ci = cnames.get(i).toString();
+											out.println("<option value =\""+ci+"\">"+ci+"</option>");
+										}
+										%>
+                                    </select>
+                                </div>
+                    		</div>
+						</form>
+						<div id="priceContent" style="min-height:200px"></div>
 							<%
 								//List prices = (List) request.getAttribute("prices");
 								//for (int i = 0; i < prices.size(); i++) {
@@ -219,24 +227,76 @@
 </body>
 
 <script>
-function getPrices(){
+$(document).ready(function(){
+	getPrices('<%=movieName%>')
+});
+function getPrices(movieName){
 	var obj=document.getElementById("cinema");
 	var index=obj.selectedIndex; //序号，取当前选中选项的序号
 	var cname = obj.options[index].text;
 	
-	 $.ajax({
-         type: "POST",
-         url: "",
-         data: {cname:cname},
-         dataType: "json",
-         success: function(data){
-        	 showPrices(data);
-                  }
-     });
+	$.ajax({
+		type:"POST",
+		url:"http://localhost:8080/Movies/price",
+		data:{'movieName':movieName,'cinema':cname},
+		
+		success:function(data){
+			var list = data.list;
+			var date = data.date;
+			$("#priceContent").empty();
+            if(list.length==0){
+            	$("#priceContent").empty();
+            	var tmp='<div class="panel-body"><label>暂无排票信息</label></div>';
+            	$("#priceContent").append(tmp);
+            }else{
+            	$("#priceContent").empty();
+            	var t = '<div class="panel-body"><div class="col-xs-5">时间</div><div class="col-xs-3">票价</div><div class="col-xs-3">购票链接</div></div>'
+            	$("#priceContent").append(t);
+            	for(var i = 0; i < list.length; i++){
+            		var tmp = '<div class="panel-body"><div class="col-xs-5">'+date[i]+'</div><div class="col-xs-3">'+list[i].price+'</div><div class="col-xs-3">'+list[i].orderLink+'</div></div>'
+            		$("#priceContent").append(tmp);
+            	}
+            	
+            	
+            }
+		},
+		error: function() {
+			showTip("连接错误，请稍后再试");
+		}	
+	})
+	
+	
+	 
 }
 
-function showPrices(data){
-	
+function showPrices(movieName){
+	$.ajax({
+		type:"POST",
+		url:"http://localhost:8080/Movies/price",
+		data:$.param({'movieName':movieName})+'&'+$('.cinema_form').serialize(),
+		
+		success:function(data){
+			var list = data.list;
+			var date = data.date;
+			$("#priceContent").empty();
+            if(list.length==0){
+            	var tmp='<div class="panel-body"><label>暂无排票信息</label></div>';
+            	$("#priceContent").append(tmp);
+            }else{
+            	var t = '<div class="panel-body"><div class="col-xs-5">时间</div><div class="col-xs-3">票价</div><div class="col-xs-3">购票链接</div></div>'
+            	$("#priceContent").append(t);
+            	for(var i = 0; i < list.length; i++){
+            		var tmp = '<div class="panel-body"><div class="col-xs-5">'+date[i]+'</div><div class="col-xs-3">'+list[i].price+'</div><div class="col-xs-3">'+list[i].orderLink+'</div></div>'
+            		$("#priceContent").append(tmp);
+            	}
+            	
+            	
+            }
+		},
+		error: function() {
+			showTip("连接错误，请稍后再试");
+		}	
+	})
 }
 </script>
 
