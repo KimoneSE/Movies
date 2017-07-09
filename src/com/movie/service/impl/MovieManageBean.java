@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.movie.dao.MovieDao;
 import com.movie.model.Cinema;
 import com.movie.model.Movie;
+import com.movie.model.MovieTag;
 import com.movie.service.MovieManageService;
 
 import net.sf.json.JSONArray;
@@ -76,8 +77,13 @@ public class MovieManageBean implements MovieManageService{
 			map.put("directors", directors);
 		}
 		
+		System.out.println("&&&&&&&&&&&&&&&&");
 		if(tags!=null){
 			map.put("tags", tags);
+		}
+		for(int i = 0;i<tags.size();i++){
+			MovieTag t = (MovieTag) tags.get(i);
+			System.out.println(t.getTag());
 		}
 		
 		if(boxOffice>0){

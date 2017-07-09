@@ -118,7 +118,7 @@
 						</span>
 					</div>
 					<div class="word">
-						时长：<span><%=m.getDuring()%></span>
+						时长：<span><%=m.getDuring()%>分钟</span>
 					</div>
 					<div class="word">
 						上映日期：<span><%=m.getReleaseDate().toString()%></span>

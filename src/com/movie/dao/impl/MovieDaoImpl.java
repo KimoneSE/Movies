@@ -219,7 +219,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			session = sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("from Comment where movieId=" + id + "' order by commentTime desc");
+			Query query = session.createQuery("from Comment where movieId=" + id + " order by commentTime desc");
 			list = query.list();
 
 		} catch (Exception e) {
@@ -237,7 +237,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			session = sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("from Actor where movieId=" + id);
+			Query query = session.createQuery("from MovieActor where movieId=" + id);
 			list = query.list();
 
 		} catch (Exception e) {
@@ -255,7 +255,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			session = sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("from Director where where movieId=" + id);
+			Query query = session.createQuery("from MovieDirector where movieId=" + id);
 			list = query.list();
 
 		} catch (Exception e) {
@@ -272,7 +272,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			session = sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("from MovieTag where where movieId=" + id);
+			Query query = session.createQuery("from MovieTag where movieId=" + id);
 			list = query.list();
 
 		} catch (Exception e) {

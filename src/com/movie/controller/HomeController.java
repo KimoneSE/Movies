@@ -21,7 +21,6 @@ import com.movie.service.UserManageService;
 public class HomeController {
 	@Autowired
 	private MovieManageService movieService;
-	private UserManageService userService;
 	
 	@RequestMapping("/Home")
 	private String showAll(HttpServletRequest req, HttpServletResponse resp,HttpSession session) throws Exception {  
