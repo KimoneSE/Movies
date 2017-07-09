@@ -10,8 +10,10 @@ package com.movie.recommend;
 
 public class GetFeature {
 	
-	public static String filmFile = "filmArray.dat";
-	public static String featureFile = "featureArray.dat";
+//	private static String classpath = this.getClass().getResource("/").getPath().replaceFirst("/", "");
+	private static String relativelyPath="";
+	public static String filmFile = relativelyPath+"/assets/filmArray.dat";
+	public static String featureFile = relativelyPath+"/Movies/assets/featureArray.dat";
 	
 	/*
 	public static void genFeature(){

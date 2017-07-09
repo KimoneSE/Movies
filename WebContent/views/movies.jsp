@@ -19,7 +19,7 @@
 <body>
 <%@include file="common/userNavbar.jsp" %>
 <div class="row">
-	<div class="col-xs-3">
+	<div class="col-xs-2">
 	<div class="panel rank-panel" style="margin-left:10%;margin-top:30px;">
 		<div class="panel-heading">
         	<h4 class="inline-title">排行榜</h4>
@@ -41,9 +41,9 @@
 	</div>
 		
 	</div>
-	<div class="col-xs-9">
+	<div class="col-xs-7">
 	
-	<div id="myContent" style="min-height: 40px;width:80%;margin-top:30px;margin-left:5%;">
+	<div id="myContent" style="min-height: 40px;width:80%;margin-top:30px;margin-left:1%;padding:0;">
 		<!--<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
            	<li id="release" class="active"><a href="#releasing" data-toggle="tab">正在热映</a></li>-->
            	<!-- <li id="coming"><a href="#comingMovies" data-toggle="tab">即将上映</a></li> -->
@@ -57,10 +57,10 @@
         List rlist = (List)request.getAttribute("release");
         for(int i = 0;i<rlist.size();i++){
         	Movie rm = (Movie)rlist.get(i);
-        	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+rm.getMovieName()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 3%;vertical-align:top;\" "
+        	out.println("<a href=\"http://localhost:8080/Movies/Movie?mname="+rm.getMovieName()+"\" class=\"movieDiv\" style=\"display: inline-block;margin-left: 5px;vertical-align:top;\" "
         	+request.getContextPath()+"/"+""+"\">"
-        	+"<div style=\"width:200px;\">"
-        	+" <img src='"+rm.getPoster()+"' height=\"200\" width=\"200\"/>"
+        	+"<div style=\"width:180px;\">"
+        	+" <img src='"+rm.getPoster()+"' height=\"180\" width=\"180\"/>"
         	+"<div style=\"font-size: 17px;margin-top: 2%;\">"+rm.getMovieName()
         	+"<span style=\"color:red;font-size: 18px;float:right;\">"+rm.getScore()+"分"+"</span></div>"
         	+" </div> </a>");
@@ -119,10 +119,11 @@
 		 -->
 				
 			</div>
-		</div>
-		
-		<div class="col-xs-3">
-	<div class="panel rank-panel" style="margin-left:10%;margin-top:30px;">
+		</div>	
+	</div>
+	
+	<div class="col-xs-3">
+	<div class="panel rank-panel" style="margin-left:2%;margin-top:30px;">
 		<div class="panel-heading">
         	<h4 class="inline-title">你可能喜欢</h4>
         </div>
@@ -134,13 +135,13 @@
 				Movie r =  (Movie)recommend.get(i);
 				String movieName = r.getMovieName();
 				int j=i+1;
-				out.println("<div class=\"panel\" style=\"margin-left:3%\"><div><img src='"+r.getPoster()+"'/><i>"+j+"</i>&nbsp;&nbsp;"+movieName+"</div></div>");
+				out.println("<a class=\"panel\" style=\"margin-left:3%;height:60px;display:inline-block;\" href='http://localhost:8080/Movies/Movie?mname="+movieName+"'><div><i>"+j
+						+"&nbsp;&nbsp;</i><img src='"+r.getPoster()+"' style='width:60px;height:60px;display:inline-block;'/>&nbsp;&nbsp;"+movieName+"</div></a>");
 			}
 			%>
         </div>
 	</div>
 		
-	</div>
 	</div>
 </div>
 		

@@ -11,17 +11,17 @@ public class Starter {
 	private static Recommender rec;
 	private static boolean tag = false;
 	
-	public static void initialize(){
+	public static void initialize(String fp){
 		if(!tag){
 			tag = true;
 			rec = new Recommender(new RecommendAlgo());
 			try {
-				FileInputStream f = new FileInputStream(GetFeature.featureFile);
+				FileInputStream f = new FileInputStream(fp+"/featureArray.dat");
 				ObjectInputStream i = new ObjectInputStream(f);
 				ArrayList<ArrayList<Integer>> films = (ArrayList<ArrayList<Integer>>)i.readObject();
 				rec.setFilms(films);
 				
-				f = new FileInputStream(GetFeature.filmFile);
+				f = new FileInputStream(fp+"/filmArray.dat");
 				i = new ObjectInputStream(f);
 				ArrayList<String> arr = (ArrayList<String>)i.readObject();
 				rec.setAllFilms(arr);

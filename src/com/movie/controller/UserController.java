@@ -27,11 +27,10 @@ public class UserController {
 	@ResponseBody
 	public Map<String, Object> postLogin(String username,String password,HttpSession session){
 		Map<String, Object> map = userService.login(username, password);
-		System.out.println("&&&&&&&&&&&&&&");
-		System.out.println(map);
+		
 		if((boolean)map.get("success")){
-			session.setAttribute("username", map.get("userName"));
-			System.out.println("^^^^^^^^^^^");
+			session.setAttribute("username", map.get("username"));
+			
 			System.out.println(session.getAttribute("username"));
 		}
 		return map;
