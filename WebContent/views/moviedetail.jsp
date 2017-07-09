@@ -48,6 +48,7 @@
 %>
 
 <body onload='init(<%=cnames%>)'>
+<%@include file="common/userNavbar.jsp" %>
 
 	<div>
 
@@ -78,8 +79,8 @@
 					<div class="word">
 						导演：<span> <%
  	for (int di = 0; di < directors.size(); di++) {
- 		Director d = (Director) directors.get(di);
- 		out.print(d.getDirctorName());
+ 		MovieDirector d = (MovieDirector) directors.get(di);
+ 		out.print(d.getDirectorName());
  		if (di < directors.size() - 1) {
  			out.print("/");
  		}
@@ -144,13 +145,13 @@
 									Comment c = (Comment) comments.get(k);
 									out.println(
 											"<div style=\"border-bottom: 1px solid lightgray;margin-left: 5%;padding-top:10px;padding-bottom: 8px;width:90%;\">"
-													+ "<span style=\"color: #5bc0de;font-size: 16px;\">" + c.getUsername()+ "</span>"
+													+ "<span style=\"color: #5bc0de;font-size: 16px;\">" + c.getCommentator()+ "</span>"
 													+ "<span style=\"color: darkgray;display: inline-block;margin-left: 3%;font-size: 15px;\">"
-													+ c.getTime().toString() + "</span><br><div style=\"margin-top:3px;\">"
+													+ c.getCommentTime().toString() + "</span><br><div style=\"margin-top:3px;\">"
 													+ "<span style=\"display: inline-block;font-size: 17px;width:82%;\">" + c.getComment()
 													+ "</span>"
 													+ "<span style=\"color: palevioletred;display: inline-block;margin-right: 3%;width:10%;float:right;font-size: 22px;\">"
-													+ c.getScore() + "分</span></div></div>");
+													+ c.getCommentLevel() + "分</span></div></div>");
 								}
 							%>
 
@@ -160,18 +161,18 @@
 					<div class="tab-pane fade" id="price">
 						<div style="margin-top: 10px; width: 100%;">
 							<%
-								List prices = (List) request.getAttribute("prices");
-								for (int i = 0; i < prices.size(); i++) {
-									Map map = (Map) prices.get(i);
-									Cinema c = (Cinema) map.get("cinema");
-									out.println("<div class=\"panel panel-bottom-border\" onclick='showDetail(\"" + c.getName() + "\","
-											+ map.get("ptime") + ")'>" + "<div class=\"row\">"
-											+ "<div class=\"col-xs-4\" id=\"cinema_name\">" + c.getName() + "</div>"
-											+ "<div class=\"col-xs-6\" id=\"price\">" + map.get("price") + "</div>" + "</div>"
-											+ "<div id=\"address\">" + c.getCity() + c.getAddress() + "</div>"
+								//List prices = (List) request.getAttribute("prices");
+								//for (int i = 0; i < prices.size(); i++) {
+									//Map map = (Map) prices.get(i);
+									//Cinema c = (Cinema) map.get("cinema");
+									//out.println("<div class=\"panel panel-bottom-border\" onclick='showDetail(\"" + c.getName() + "\","
+										//	+ map.get("ptime") + ")'>" + "<div class=\"row\">"
+										//	+ "<div class=\"col-xs-4\" id=\"cinema_name\">" + c.getName() + "</div>"
+										//	+ "<div class=\"col-xs-6\" id=\"price\">" + map.get("price") + "</div>" + "</div>"
+										//	+ "<div id=\"address\">" + c.getCity() + c.getAddress() + "</div>"
 											//id改为每个电影院的名称 
-											+ "<div id='" + c.getName() + "'></div>" + "</div>");
-								}
+										//	+ "<div id='" + c.getName() + "'></div>" + "</div>");
+								//}
 							%>
 
 						</div>

@@ -34,6 +34,7 @@ public class HomeController {
 		
 		List rlist = movieService.getAllRelease();		
 		req.setAttribute("release", rlist);
+		System.out.println(rlist.size());
 		
 //		List alist = movieService.getAllMovies();		
 //		req.setAttribute("all", alist);
