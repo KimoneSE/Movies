@@ -3,45 +3,46 @@ package com.movie.dao;
 import java.util.List;
 
 import com.movie.model.Cinema;
-import com.movie.model.ComingMovie;
-import com.movie.model.DownloadLink;
 import com.movie.model.Movie;
-import com.movie.model.ReleaseMovie;
 
 public interface MovieDao {
 
 	public List getAllRelease();
 	
-	public List getAllMovies();
+	//public List getAllMovies();
 	
-	public List getAllComing();
+	//public List getAllComing();
 	
 	public List getRank();
 	
-	public ReleaseMovie getRelease(String mname);
+//	public ReleaseMovie getRelease(String mname);
+//	
+//	public ComingMovie getComing(String mname);
 	
-	public ComingMovie getComing(String mname);
+	public Movie getMovie(int id);
 	
-	public Movie getMovie(String mname);
-	
-	public DownloadLink getDownloadLink(String mname);
+//	public DownloadLink getDownloadLink(String mname);
 	
 	public double getBoxoffice(String mname);
 	
-	public List getComments(String mname);
+	public List getComments(int id);
 	
-	public List getActors(String mname);
+	public List getActors(int id);
 	
-	public List getDirectors(String mname);
+	public List getDirectors(int id);
+	
+	public List getTags(int id);
 	
 	public List getAllCinemas();
 	
 	public List getAllCinemaNames();
 	
-	public Cinema getCinema(String cid);
+	public Cinema getCinema(int cid);
 	
-	public List getAllPrice(String mname);
+	public List getMovieTickets(int mid,int cid);
 	
-	public List getAllPriceDetail(String mname,String cid);
+//	public List getAllPrice(String mname);
+//	
+//	public List getAllPriceDetail(String mname,String cid);
 	
 }

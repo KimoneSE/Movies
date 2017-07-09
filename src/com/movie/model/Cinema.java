@@ -6,44 +6,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cinema")
+@Table(name = "douban_cinema")
 public class Cinema {
 
-	private String id;
-	private String name;
-	private String city;
+	private int cinemaId;
+	private String cinemaName;
+	private String route;
 	private String address;
 	private String web;
 
 	@Id
-	@Column(name="id")
-	public String getId() {
-		return id;
+	@Column(name = "cinemaId")
+	public int getCinemaId() {
+		return cinemaId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCinemaId(int cinemaId) {
+		this.cinemaId = cinemaId;
 	}
 
-	@Column(name="name")
-	public String getName() {
-		return name;
+	@Column(name = "cinemaName")
+	public String getCinemaName() {
+		return cinemaName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCinemaName(String cinemaName) {
+		this.cinemaName = cinemaName;
 	}
 
-	@Column(name="city")
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	@Column(name="address")
+	@Column(name = "address")
 	public String getAddress() {
 		return address;
 	}
@@ -52,7 +43,16 @@ public class Cinema {
 		this.address = address;
 	}
 
-	@Column(name="web")
+	@Column(name = "route")
+	public String getRoute() {
+		return route;
+	}
+
+	public void setRoute(String route) {
+		this.route = route;
+	}
+
+	@Column(name = "web")
 	public String getWeb() {
 		return web;
 	}

@@ -1,5 +1,6 @@
 package com.movie.model;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,62 +14,70 @@ import javax.persistence.TemporalType;
 import com.movie.model.pk.RankPK;
 
 @Entity
-@Table(name = "comment")
-@IdClass(RankPK.class)
+@Table(name = "douban_comment")
 public class Comment {
 
-	private String movie;
-	private Date time;
-	private double score;
+	private BigInteger id;
+	private int movieId;
+	private Date commentTime;
+	private String commentator;
+	private String commentLevel;
 	private String comment;
-	private String username;
 
 	@Id
-	@Column(name="movie")
-	public String getMovie() {
-		return movie;
+	@Column(name = "id")
+	public BigInteger getId() {
+		return id;
 	}
 
-	public void setMovie(String movie) {
-		this.movie = movie;
+	public void setId(BigInteger id) {
+		this.id = id;
 	}
 
-	@Id
+	@Column(name = "movieId")
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="time")
-	public Date getTime() {
-		return time;
+	@Column(name = "commentTime")
+	public Date getCommentTime() {
+		return commentTime;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setCommentTime(Date commentTime) {
+		this.commentTime = commentTime;
 	}
 
-	@Column(name="score")
-	public double getScore() {
-		return score;
+	@Column(name = "commentator")
+	public String getCommentator() {
+		return commentator;
 	}
 
-	public void setScore(double score) {
-		this.score = score;
+	public void setCommentator(String commentator) {
+		this.commentator = commentator;
 	}
 
-	@Column(name="comment")
+	@Column(name = "commentLevel")
+	public String getCommentLevel() {
+		return commentLevel;
+	}
+
+	public void setCommentLevel(String commentLevel) {
+		this.commentLevel = commentLevel;
+	}
+
+	@Column(name = "comment")
 	public String getComment() {
 		return comment;
 	}
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	@Column(name="username")
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 }

@@ -8,28 +8,39 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "douban_movie")
 public class Movie {
 
-	private String movie;
+	private int movieId;
+	private String movieName;
 	private String region;
-	private Date releaseTime;
-	private String introduce;
+	private String language;
+	private Date releaseDate;
+	private String summary;
 	private String during;
-	private String img;
-	private int score;
+	private String poster;
+	private double score;
 
 	@Id
-	@Column(name="movie")
-	public String getMovie() {
-		return movie;
+	@Column(name = "movieId")
+	public int getMovieId() {
+		return movieId;
 	}
 
-	public void setMovie(String movie) {
-		this.movie = movie;
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
 	}
 
-	@Column(name="region")
+	@Column(name = "movieName")
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
+	@Column(name = "region")
 	public String getRegion() {
 		return region;
 	}
@@ -38,25 +49,25 @@ public class Movie {
 		this.region = region;
 	}
 
-	@Column(name="releaseTime")
-	public Date getReleaseTime() {
-		return releaseTime;
+	@Column(name = "language")
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setReleaseTime(Date releaseTime) {
-		this.releaseTime = releaseTime;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
-	@Column(name="introduce")
-	public String getIntroduce() {
-		return introduce;
+	@Column(name = "releaseDate")
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
-	@Column(name="during")
+	@Column(name = "during")
 	public String getDuring() {
 		return during;
 	}
@@ -65,22 +76,31 @@ public class Movie {
 		this.during = during;
 	}
 
-	@Column(name="img")
-	public String getImg() {
-		return img;
+	@Column(name = "poster")
+	public String getPoster() {
+		return poster;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 
-	@Column(name="score")
-	public int getScore() {
+	@Column(name = "score")
+	public double getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
+	}
+
+	@Column(name = "summary")
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 
 }

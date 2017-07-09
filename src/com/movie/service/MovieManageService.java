@@ -9,18 +9,20 @@ public interface MovieManageService {
 	
 	public List getAllRelease();
 	
-	public List getAllMovies();
-	
-	public List getAllComing();
+//	public List getAllMovies();
+//	
+//	public List getAllComing();
 	
 	public List getRank();
 	
-	public Map getDetail(String mname);
+	public Map getDetail(int id);
 	
-	public List getComments(String mname);
+	public List getComments(int id);
 	
 	public JSONArray getAllCinemaNames();
 	
-	public List getAllPriceInfo(String mname);
+//	public List getAllPriceInfo(String mname);
+	
+	public List getMovieTickets(int mid,int cid);
 
 }
