@@ -9,7 +9,16 @@
 	href="<%=response.encodeURL(request.getContextPath() + "/assets/css/bootstrap.css")%>">
 <link rel="stylesheet"
 	href="<%=response.encodeURL(request.getContextPath() + "/assets/css/custom.css")%>">
+	
 <style type="text/css">
+
+.wrapper{width:300px; margin:10px auto; font:14px/1.5 arial;}
+/*tab*/
+#star{overflow:hidden;}
+#star li{float:left; width:20px; height:20px; margin:2px; display:inline; color:#999; font:bold 18px arial; cursor:pointer}
+#star .act{color:#c00}
+#star_word{width:80px; height:30px; line-height:30px; border:1px solid #ccc; margin:10px; text-align:center; display:none}
+
 .number {
 	font-size: 18px;
 	color: #ff8000;
@@ -46,6 +55,7 @@
 	Map detail = (Map) request.getAttribute("detail");
 	JSONArray cnames = (JSONArray) request.getAttribute("cnames");
 	String movieName = (String)request.getAttribute("movieName");
+	String username = (String)request.getAttribute("username");
 %>
 
 <body onload="init(<%=cnames%>)">
@@ -135,7 +145,19 @@
 
 				</div>
 			</div>
+			<div class="wrapper col-xs-offset-6">
+			评分 
+			<span id="result"></span>
+			<ul id="star">
+			<li>★</li>
+			<li>★</li>
+			<li>★</li>
+			<li>★</li>
+			<li>★</li>
+			</ul>
+			<div id="star_word">一般</div>
 
+			</div>
 			<div id="myContent"
 				style="min-height: 40px; width: 80%; margin-top: 30px;">
 				<ul class="nav nav-tabs" id="selectTab" style="font-family: 等线">
@@ -230,6 +252,63 @@
 $(document).ready(function(){
 	getPrices('<%=movieName%>')
 });
+window.onload = function(){
+
+	  var star = document.getElementById("star");
+	    var star_li = star.getElementsByTagName("li");
+	    var star_word = document.getElementById("star_word");
+	    var result = document.getElementById("result");
+	    var i=0;
+	    var j=0;
+	    var len = star_li.length;
+	    var word = ['很差','差','一般',"好","很好"]
+	    
+	    for(i=0; i<len; i++){
+	      star_li[i].index = i;
+	        
+	        star_li[i].onmouseover = function(){
+	              star_word.style.display = "block";
+	                star_word.innerHTML = word[this.index];
+	                for(i=0; i<=this.index; i++){
+	                  star_li[i].className = "act";
+	                    
+	                }
+	        }
+
+	        star_li[i].onmouseout = function(){
+	              star_word.style.display = "none";
+	                for(i=0; i<len; i++){
+	                 star_li[i].className = "";
+	                }
+	        }
+	        
+	        star_li[i].onclick = function(){
+	        
+	        	result.innerHTML = (this.index+1)+"分";
+	         	
+	      		$.ajax({
+	      			type:"POST",
+	      			url:"http://localhost:8080/Movies/score",
+	      			data:{'movieName':'<%=movieName%>','username':'<%=username%>','score':this.index+1},
+	      			
+	      			success:function(data){
+	      				alert(1);
+	      			},
+	      			error: function() {
+	      				showTip("连接错误，请稍后再试");
+	      			}	
+	      		})
+	          //score(this.index+1);
+	        }
+	        
+
+	    }
+
+	}
+	
+function score(num){
+	
+}
 function getPrices(movieName){
 	var obj=document.getElementById("cinema");
 	var index=obj.selectedIndex; //序号，取当前选中选项的序号
@@ -325,5 +404,6 @@ function showPrices(movieName){
 		}
 		map[movie_name]++;
 	}
+
 </script>
 </html>

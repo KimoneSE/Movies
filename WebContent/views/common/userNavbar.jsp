@@ -13,7 +13,8 @@
 
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<!-- <li><a href="#">${user.username }</a></li> -->
+		
+			<li><a href="#"><%=(String)request.getAttribute("username") %></a></li>
 			<li><a href="http://localhost:8080/Movies/views/index.jsp">退出</a></li>
 		</ul>
 	</div>

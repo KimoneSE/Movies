@@ -2,6 +2,8 @@ package com.movie.dao.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,11 +21,16 @@ public class ScoreDaoImpl implements ScoreDao {
 	private Session session;
 
 	@Override
+	@Transactional
 	public void add(Score s) {
 		// TODO Auto-generated method stub
 		try {
+			System.out.println("************");
+			System.out.println(s.getUsername());
 			session=sessionFactory.getCurrentSession();
-			session.save(s);
+			String sqlString = "insert into user_score values(0,"+s.getMovieId()+","+s.getScore()+","+s.getUsername()+")";
+			session.createSQLQuery(sqlString);
+//			session.flush();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

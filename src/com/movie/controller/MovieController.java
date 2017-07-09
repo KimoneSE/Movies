@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,10 @@ import com.movie.dao.MovieDao;
 import com.movie.dao.impl.MovieDaoImpl;
 import com.movie.model.Movie;
 import com.movie.model.Price;
+import com.movie.model.Score;
 import com.movie.model.Ticket;
 import com.movie.service.MovieManageService;
+import com.movie.service.ScoreManageService;
 
 import net.sf.json.JSONArray;
 
@@ -30,9 +33,14 @@ public class MovieController {
 	private MovieManageService movieService;
 	@Autowired
 	private MovieDao movieDao;
+	@Autowired
+	private ScoreManageService scoreService;
 	
 	@RequestMapping("/Movie")
-	private String showAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {  
+	private String showAll(HttpServletRequest req, HttpServletResponse resp,HttpSession session) throws Exception {  
+		
+		String username = (String) session.getAttribute("username");
+		req.setAttribute("username", username);
 		
 		String mname = req.getParameter("mname");
 		Map detail = movieService.getDetail(mname);		
@@ -78,6 +86,23 @@ public class MovieController {
 //			System.out.println(list.size());
 		map.put("list", list);
 		map.put("date", date);
+		return map;
+	}
+	
+	@RequestMapping(value="/score",method=RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> getPrices(String movieName,String username,int score){
+		System.out.println(movieName);		
+		Movie movie = movieDao.getMovie(movieName);
+		int mid = movie.getMovieId();
+		Map<String, Object> map = new HashMap<String, Object>();
+		Score s = new Score();
+		s.setId(19);
+		s.setMovieId(mid);
+		s.setUsername(username);
+		s.setScore((double)score);
+		scoreService.addScore(s);
+		System.out.println(movieName+username+score);
 		return map;
 	}
 }

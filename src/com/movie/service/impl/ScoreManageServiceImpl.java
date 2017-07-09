@@ -2,6 +2,8 @@ package com.movie.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.movie.model.Score;
 import com.movie.service.ScoreManageService;
 
 @Service
+@Transactional
 public class ScoreManageServiceImpl implements ScoreManageService {
 
 	@Autowired
@@ -17,6 +20,7 @@ public class ScoreManageServiceImpl implements ScoreManageService {
 	
 	@Override
 	public void addScore(Score s) {
+		System.out.println("^^^^^service^^^^");
 		// TODO Auto-generated method stub
 		scoreDao.add(s);
 	}
