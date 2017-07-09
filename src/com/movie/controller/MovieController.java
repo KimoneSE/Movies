@@ -23,19 +23,23 @@ public class MovieController {
 	@RequestMapping("/Movie")
 	private String showAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {  
 		
-		String mname = req.getParameter("mname");
-		Map detail = movieService.getDetail(mname);		
+		int mid = Integer.parseInt(req.getParameter("id"));
+		Map detail = movieService.getDetail(mid);		
 		req.setAttribute("detail", detail);
 		
-		List comments = movieService.getComments(mname);
+		List comments = movieService.getComments(mid);
 		req.setAttribute("comments", comments);
 		
 		JSONArray cnames = movieService.getAllCinemaNames();
 		req.setAttribute("cnames", cnames);
 			
-		List prices = movieService.getAllPriceInfo(mname);
-		req.setAttribute("prices", prices);
+//		List prices = movieService.getAllPriceInfo(mname);
+//		req.setAttribute("prices", prices);
 //		System.out.println(cnames);
+		String cname = (String) cnames.get(0);
+		int cid = movieService.getCinema(cname).getCinemaId();
+		List prices = movieService.getMovieTickets(mid, cid);
+		req.setAttribute("prices", prices);
 		
 		return "moviedetail";
 	}

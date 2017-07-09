@@ -39,6 +39,8 @@ public interface MovieDao {
 	
 	public Cinema getCinema(int cid);
 	
+	public Cinema getCinema(String cname);
+	
 	public List getMovieTickets(int mid,int cid);
 	
 //	public List getAllPrice(String mname);

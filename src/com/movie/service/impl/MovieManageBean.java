@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.movie.dao.MovieDao;
+import com.movie.model.Cinema;
 import com.movie.model.Movie;
 import com.movie.service.MovieManageService;
 
@@ -100,6 +101,11 @@ public class MovieManageBean implements MovieManageService{
 		// TODO Auto-generated method stub
 		JSONArray jsonArray = JSONArray.fromObject(movieDao.getAllCinemaNames());
 		return jsonArray;
+	}
+	
+	@Override
+	public Cinema getCinema(String cname){
+		return movieDao.getCinema(cname);
 	}
 	
 	@Override

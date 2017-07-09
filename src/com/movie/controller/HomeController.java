@@ -35,11 +35,11 @@ public class HomeController {
 		List rlist = movieService.getAllRelease();		
 		req.setAttribute("release", rlist);
 		
-		List alist = movieService.getAllMovies();		
-		req.setAttribute("all", alist);
-		
-		List clist = movieService.getAllComing();		
-		req.setAttribute("coming", clist);
+//		List alist = movieService.getAllMovies();		
+//		req.setAttribute("all", alist);
+//		
+//		List clist = movieService.getAllComing();		
+//		req.setAttribute("coming", clist);
 		
 		List rank = movieService.getRank();		
 		req.setAttribute("rank", rank);

@@ -370,5 +370,26 @@ public class MovieDaoImpl  implements MovieDao {
 		}	
 		return c;
 	}
+	
+	@Override
+	public Cinema getCinema(String cname) {
+		// TODO Auto-generated method stub
+		Cinema c = null;
+		
+		try {
+			session=sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Cinema where cinemaName='"+cname+"'");
+			List list = query.list();
+			
+			if(list!=null&&list.size()>0){
+				c = (Cinema) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return c;
+	}
 
 }
